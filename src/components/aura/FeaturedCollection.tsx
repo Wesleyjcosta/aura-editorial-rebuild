@@ -23,7 +23,12 @@ export function FeaturedCollection() {
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-[linear-gradient(to_top,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.72)_34%,rgba(255,255,255,0)_62%)]"
+            />
             <div className="relative flex h-full flex-col justify-end p-8 lg:p-10">
+
               <p className="label-xs text-ink-soft">Coleção</p>
               <p className="display mt-2 text-[clamp(30px,3vw,44px)] tracking-[0.02em] text-ink">
                 LUMINAR
