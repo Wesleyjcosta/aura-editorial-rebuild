@@ -4,10 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * AURA Acessórios — editorial luxury design system.
- * Colors in oklch. Radius 0. No shadows. Gold only as a detail.
- */
+/* AURA Acessórios — contemporary editorial luxury system. */
 
 @theme inline {
   --radius-sm: 0px;
@@ -43,11 +40,18 @@
   --color-product: var(--product);
   --color-gold: var(--gold);
   --color-gold-dark: var(--gold-dark);
+  --color-coal: var(--coal);
+  --color-sage: var(--sage);
+  --color-wine: var(--wine);
   --color-ink: var(--foreground);
   --color-ink-soft: var(--text-secondary);
   --color-ink-muted: var(--text-muted);
   --color-line: var(--border);
   --color-line-light: var(--border-light);
+  --color-surface: var(--background);
+  --color-gold-strong: var(--gold-dark);
+  --color-whatsapp: oklch(0.48 0.14 150);
+  --color-whatsapp-foreground: white;
 
   --font-display: "Bodoni Moda", "Didot", Georgia, serif;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -55,17 +59,20 @@
 
 :root {
   --radius: 0px;
-  --background: oklch(1 0 0); /* #FFFFFF */
-  --foreground: oklch(0.201 0 0); /* #151515 */
-  --soft: oklch(0.976 0.004 85); /* #F8F7F4 */
-  --warm: oklch(0.958 0.008 80); /* #F4F1EC */
-  --product: oklch(0.971 0.004 85); /* #F7F6F3 */
-  --text-secondary: oklch(0.435 0.011 60); /* #57534D */
-  --text-muted: oklch(0.6 0.012 70); /* #8A847C */
-  --border: oklch(0.884 0.008 70); /* #DDD8D0 */
-  --border-light: oklch(0.933 0.006 75); /* #ECE9E4 */
-  --gold: oklch(0.696 0.073 78); /* #B89661 */
-  --gold-dark: oklch(0.56 0.079 72); /* #8D6A3D */
+  --background: oklch(0.996 0.001 95);
+  --foreground: oklch(0.19 0.006 75);
+  --soft: oklch(0.965 0.005 100);
+  --warm: oklch(0.945 0.014 135);
+  --product: oklch(0.97 0.004 95);
+  --text-secondary: oklch(0.43 0.008 85);
+  --text-muted: oklch(0.59 0.009 90);
+  --border: oklch(0.84 0.009 90);
+  --border-light: oklch(0.91 0.006 95);
+  --gold: oklch(0.66 0.09 76);
+  --gold-dark: oklch(0.5 0.08 70);
+  --coal: oklch(0.155 0.006 75);
+  --sage: oklch(0.925 0.018 135);
+  --wine: oklch(0.37 0.07 22);
 
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
@@ -92,6 +99,7 @@
 
   html {
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -100,28 +108,39 @@
     font-family: var(--font-sans);
     font-size: 15px;
     line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--gold) 32%, white);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--gold-dark);
+    outline-offset: 4px;
   }
 }
 
 @utility aura-container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1520px;
   margin-inline: auto;
-  padding-inline: 18px;
+  padding-inline: 20px;
 
   @media (min-width: 768px) {
-    padding-inline: 34px;
+    padding-inline: 40px;
   }
 
   @media (min-width: 1024px) {
-    padding-inline: 60px;
+    padding-inline: 64px;
   }
 }
 
 @utility eyebrow {
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0;
   text-transform: uppercase;
   line-height: 1.5;
 }
@@ -129,14 +148,14 @@
 @utility label-xs {
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 @utility display {
   font-family: var(--font-display);
   font-weight: 400;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
   line-height: 0.98;
 }
 

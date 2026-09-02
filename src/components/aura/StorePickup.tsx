@@ -1,81 +1,69 @@
-import loja from "@/assets/loja.jpg";
+import { ArrowRight, MapPin, MessageCircle, ShoppingBag } from "lucide-react";
+
+import loja from "@/assets/loja-frente-real.jpeg";
 import { Reveal } from "./primitives";
-
-function IconBag() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.1" className="h-7 w-7">
-      <path d="M5 7h14l-1.2 13H6.2L5 7Z" />
-      <path d="M9 9V6.5a3 3 0 0 1 6 0V9" />
-    </svg>
-  );
-}
-
-function IconPin() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.1" className="h-7 w-7">
-      <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z" />
-      <circle cx="12" cy="10" r="2.4" />
-    </svg>
-  );
-}
-
-function IconWhats() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.1" className="h-7 w-7">
-      <path d="M4 20l1.3-3.9A8 8 0 1 1 8 19l-4 1Z" />
-      <path d="M9 9.5c.6 3 2.5 4.9 5.5 5.5l1-1.5 2 .8-.4 1.7c-3.6.6-8-3.8-7.4-7.4l1.7-.4.8 2L9 9.5Z" />
-    </svg>
-  );
-}
 
 export function StorePickup() {
   return (
-    <section className="pb-20 lg:pb-24">
+    <section id="loja" className="bg-coal py-20 text-white md:py-24 lg:py-28">
       <div className="aura-container">
-        <Reveal className="grid border border-line-light lg:grid-cols-[1.25fr_1fr_0.9fr_1.1fr]">
-          <div className="flex items-start gap-5 border-b border-line-light p-7 lg:border-r lg:border-b-0">
-            <span className="shrink-0 text-ink">
-              <IconBag />
-            </span>
-            <div className="min-w-0">
-              <h3 className="display text-[19px] text-ink">Retire na AURA</h3>
-              <p className="mt-2 text-[13px] leading-[1.6] text-ink-soft">
-                Você escolhe online, reserva pelo WhatsApp e retira na nossa loja.
+        <Reveal className="grid lg:grid-cols-[1fr_0.72fr]">
+          <div className="order-last flex flex-col justify-between bg-sage p-8 text-ink md:p-12 lg:order-first lg:min-h-[700px] lg:p-14">
+            <div>
+              <div className="flex items-center justify-between text-[9px] font-medium uppercase text-ink-muted">
+                <span>06 · Loja AURA</span>
+                <span>Viçosa / MG</span>
+              </div>
+              <h2 className="display mt-14 text-[48px] leading-[0.96] md:text-[64px]">
+                Escolha online.
+                <br />
+                Retire na <em className="italic text-gold-dark">AURA.</em>
+              </h2>
+              <p className="mt-7 max-w-[420px] text-[13px] leading-[1.75] text-ink-soft">
+                Reserve suas peças pelo WhatsApp e retire com calma na nossa loja, no coração de
+                Viçosa.
               </p>
             </div>
-          </div>
 
-          <div className="flex items-start gap-5 border-b border-line-light p-7 lg:border-r lg:border-b-0">
-            <span className="shrink-0 text-ink">
-              <IconPin />
-            </span>
-            <p className="text-[13px] leading-[1.6] text-ink-soft">
-              Galeria Maria Mucci, nº 54,
-              <br />
-              loja 113A — Calçadão,
-              <br />
-              Viçosa/MG
-            </p>
-          </div>
-
-          <div className="flex items-start gap-5 border-b border-line-light p-7 lg:border-r lg:border-b-0">
-            <span className="shrink-0 text-ink">
-              <IconWhats />
-            </span>
-            <div>
-              <p className="label-xs text-ink">WhatsApp</p>
-              <a href="tel:+5531983400829" className="mt-2 block text-[13px] text-ink-soft">
-                (31) 98340-0829
-              </a>
+            <div className="mt-14 grid gap-5 border-t border-ink/20 pt-6 sm:grid-cols-2">
+              <div className="flex items-start gap-4">
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.25} />
+                <p className="text-[12px] leading-[1.65] text-ink-soft">
+                  Galeria Maria Mucci, nº 54
+                  <br />
+                  loja 113A · Calçadão
+                </p>
+              </div>
+              <div className="flex items-start gap-4">
+                <ShoppingBag className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={1.25} />
+                <p className="text-[12px] leading-[1.65] text-ink-soft">
+                  Reserve pelo WhatsApp
+                  <br />e retire na loja
+                </p>
+              </div>
             </div>
+
+            <a
+              href="https://wa.me/5531983400829"
+              className="group mt-8 inline-flex w-full items-center justify-between bg-coal px-6 py-5 text-[10px] font-medium uppercase text-white sm:w-auto sm:min-w-[280px]"
+            >
+              <span className="flex items-center gap-3">
+                <MessageCircle className="h-4 w-4" strokeWidth={1.25} />
+                Falar com a AURA
+              </span>
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                strokeWidth={1.25}
+              />
+            </a>
           </div>
 
-          <div className="min-h-[180px]">
+          <div className="order-first aspect-[3/4] overflow-hidden bg-coal lg:order-last lg:min-h-[700px] lg:aspect-auto">
             <img
               src={loja}
-              alt="Interior da loja AURA"
+              alt="Frente real da loja AURA em Viçosa"
               loading="lazy"
-              className="h-full min-h-[180px] w-full object-cover"
+              className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-[1.02] lg:min-h-[700px]"
             />
           </div>
         </Reveal>
