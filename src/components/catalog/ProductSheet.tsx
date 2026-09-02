@@ -38,6 +38,7 @@ export function ProductSheet({
   const promo = produto.preco_promocional != null && produto.preco != null;
   const categoria = categoriaPublica(produto.categoria);
   const imagem = produto.imagem_url || produto.imagem_thumb_url || "";
+  const temDetalhes = Boolean(produto.material?.trim() || produto.referencia?.trim());
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:px-6">
@@ -119,20 +120,22 @@ export function ProductSheet({
                 </p>
               )}
 
-              <dl className="grid gap-4 border-t border-border pt-5 text-sm sm:grid-cols-2">
-                {produto.material?.trim() && (
-                  <div>
-                    <dt className="text-xs text-muted-foreground">Material</dt>
-                    <dd className="mt-1 text-foreground">{produto.material}</dd>
-                  </div>
-                )}
-                {produto.referencia?.trim() && (
-                  <div>
-                    <dt className="text-xs text-muted-foreground">Referência</dt>
-                    <dd className="mt-1 text-foreground">{produto.referencia}</dd>
-                  </div>
-                )}
-              </dl>
+              {temDetalhes && (
+                <dl className="grid gap-4 border-t border-border pt-5 text-sm sm:grid-cols-2">
+                  {produto.material?.trim() && (
+                    <div>
+                      <dt className="text-xs text-muted-foreground">Material</dt>
+                      <dd className="mt-1 text-foreground">{produto.material}</dd>
+                    </div>
+                  )}
+                  {produto.referencia?.trim() && (
+                    <div>
+                      <dt className="text-xs text-muted-foreground">Referência</dt>
+                      <dd className="mt-1 text-foreground">{produto.referencia}</dd>
+                    </div>
+                  )}
+                </dl>
+              )}
             </div>
 
             <footer className="mt-auto border-t border-border bg-surface px-6 pb-7 pt-5 sm:px-9 sm:pb-8">
@@ -176,7 +179,7 @@ export function ProductSheet({
                         action: { label: "Ver sacola", onClick: onCartOpen },
                       });
                     }}
-                    className="h-12 flex-1 rounded-[2px] bg-foreground px-5 text-xs font-semibold uppercase tracking-[0.1em] text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    className="h-12 flex-none rounded-[2px] bg-foreground px-5 text-xs font-semibold uppercase tracking-[0.1em] text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:flex-1"
                   >
                     Adicionar à sacola
                   </button>
