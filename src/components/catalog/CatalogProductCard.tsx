@@ -26,13 +26,20 @@ export function CatalogProductCard({
   const categoria = categoriaPublica(produto.categoria);
 
   return (
-    <article className="group flex h-full flex-col">
-      <button
-        type="button"
-        onClick={() => onOpen(produto)}
-        aria-label={`Ver detalhes de ${produto.nome}`}
-        className="relative block aspect-[4/3] w-full overflow-hidden bg-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
-      >
+    <article
+      className="group flex h-full cursor-pointer flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+      role="button"
+      tabIndex={0}
+      aria-label={`Ver produto ${produto.nome}`}
+      onClick={() => onOpen(produto)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onOpen(produto);
+        }
+      }}
+    >
+      <div className="relative block aspect-[4/3] w-full overflow-hidden bg-muted/20">
         {img && imageState !== "error" ? (
           <>
             {imageState === "loading" && (
@@ -67,7 +74,7 @@ export function CatalogProductCard({
             Oferta
           </span>
         )}
-      </button>
+      </div>
 
       <div className="flex flex-1 flex-col pt-3.5 sm:pt-4">
         <p className="min-h-4 text-[9px] font-medium uppercase tracking-[0.18em] text-gold-strong">
@@ -95,19 +102,9 @@ export function CatalogProductCard({
           )}
         </div>
 
-        <button
-          type="button"
-          onClick={() => onOpen(produto)}
-          className="mt-auto inline-flex w-fit items-center gap-2 border-b border-transparent pt-4 pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground transition-[border-color,color] duration-150 hover:border-gold-strong hover:text-gold-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:text-[11px]"
-        >
-          Ver detalhes
-          <span
-            aria-hidden="true"
-            className="text-base font-normal leading-none transition-transform duration-150 group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none"
-          >
-            →
-          </span>
-        </button>
+        <span className="mt-5 inline-flex h-10 w-full items-center justify-center border border-foreground bg-transparent px-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-foreground transition-[background-color,color,border-color] duration-150 group-hover:border-foreground group-hover:bg-foreground group-hover:text-background group-focus-visible:border-foreground group-focus-visible:bg-foreground group-focus-visible:text-background motion-reduce:transition-none sm:h-11 sm:text-[11px]">
+          Ver produto
+        </span>
       </div>
     </article>
   );

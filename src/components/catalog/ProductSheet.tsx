@@ -88,8 +88,14 @@ export function ProductSheet({
                   {produto.nome}
                 </h2>
 
-                <p className="flex flex-wrap items-baseline gap-3">
-                  <span className="text-xl font-semibold tabular-nums text-foreground">
+                {produto.codigo && (
+                  <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                    Cód. {produto.codigo}
+                  </p>
+                )}
+
+                <p className="flex flex-wrap items-baseline gap-3 pt-1">
+                  <span className="text-2xl font-semibold tabular-nums text-gold-strong sm:text-[30px]">
                     {brl(preco)}
                   </span>
                   {promo && (
@@ -97,6 +103,10 @@ export function ProductSheet({
                       {brl(Number(produto.preco))}
                     </span>
                   )}
+                </p>
+
+                <p className="text-xs font-medium text-muted-foreground">
+                  {estoque > 0 ? `Disponível: ${estoque} un.` : "Indisponível no momento"}
                 </p>
               </div>
 
@@ -117,12 +127,6 @@ export function ProductSheet({
                   <div>
                     <dt className="text-xs text-muted-foreground">Referência</dt>
                     <dd className="mt-1 text-foreground">{produto.referencia}</dd>
-                  </div>
-                )}
-                {produto.codigo && (
-                  <div>
-                    <dt className="text-xs text-muted-foreground">Código</dt>
-                    <dd className="mt-1 tabular-nums text-foreground">{produto.codigo}</dd>
                   </div>
                 )}
               </dl>
