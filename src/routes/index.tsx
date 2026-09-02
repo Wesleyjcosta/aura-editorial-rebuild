@@ -10,6 +10,7 @@ import { CartSheet } from "@/components/catalog/CartSheet";
 import { CatalogExperience } from "@/components/catalog/CatalogExperience";
 import { CartProvider, useCart } from "@/lib/cart";
 import { useState } from "react";
+import { Toaster } from "sonner";
 
 const title = "AURA Acessórios — Joias e acessórios autorais";
 const description =
@@ -46,7 +47,7 @@ function Storefront() {
       <AuraHeader cartCount={count} onCartOpen={() => setCartOpen(true)} />
       <main>
         <AuraHero />
-        <CatalogExperience />
+        <CatalogExperience onCartOpen={() => setCartOpen(true)} />
         <BrandManifesto />
         <StorePickup />
       </main>
@@ -54,6 +55,7 @@ function Storefront() {
       {count ? <div className="h-14 bg-coal sm:h-16" aria-hidden="true" /> : null}
       <CartBar onOpen={() => setCartOpen(true)} />
       <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
+      <Toaster position="top-center" closeButton />
     </div>
   );
 }

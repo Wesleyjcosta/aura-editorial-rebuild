@@ -17,7 +17,7 @@ function normalizar(value: string | null | undefined) {
     .toLowerCase();
 }
 
-export function CatalogExperience() {
+export function CatalogExperience({ onCartOpen }: { onCartOpen: () => void }) {
   const [busca, setBusca] = useState("");
   const [categoria, setCategoria] = useState("");
   const [pagina, setPagina] = useState(1);
@@ -220,7 +220,11 @@ export function CatalogExperience() {
         )}
       </div>
 
-      <ProductSheet produto={selecionado} onClose={() => setSelecionado(null)} />
+      <ProductSheet
+        produto={selecionado}
+        onClose={() => setSelecionado(null)}
+        onCartOpen={onCartOpen}
+      />
     </section>
   );
 }

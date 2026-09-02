@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { Minus, Plus, X } from "lucide-react";
+import { toast } from "sonner";
 import { brl, categoriaPublica, estoqueDisponivel, precoFinal, type Produto } from "@/lib/catalog";
 import { useCart } from "@/lib/cart";
 
 export function ProductSheet({
   produto,
   onClose,
+  onCartOpen,
 }: {
   produto: Produto | null;
   onClose: () => void;
+  onCartOpen: () => void;
 }) {
   const { add } = useCart();
   const [qtd, setQtd] = useState(1);
@@ -168,6 +171,10 @@ export function ProductSheet({
                     onClick={() => {
                       add(produto, qtd);
                       onClose();
+                      toast.success("Produto adicionado à sacola", {
+                        description: `${qtd} ${qtd === 1 ? "unidade" : "unidades"} de ${produto.nome}.`,
+                        action: { label: "Ver sacola", onClick: onCartOpen },
+                      });
                     }}
                     className="h-12 flex-1 rounded-[2px] bg-foreground px-5 text-xs font-semibold uppercase tracking-[0.1em] text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   >

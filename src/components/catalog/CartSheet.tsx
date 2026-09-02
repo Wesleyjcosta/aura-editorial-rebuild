@@ -229,7 +229,7 @@ export function CartSheet({ open, onClose }: { open: boolean; onClose: () => voi
                   disabled={!nome.trim()}
                   className="mt-5 min-h-13 w-full rounded-[2px] bg-whatsapp px-5 py-4 text-xs font-semibold uppercase tracking-[0.1em] text-whatsapp-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
-                  Enviar pedido pelo WhatsApp
+                  Reservar pelo WhatsApp
                 </button>
 
                 <button
