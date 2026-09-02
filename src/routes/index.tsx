@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { AuraHeader } from "@/components/aura/AuraHeader";
-import { AuraHero } from "@/components/aura/AuraHero";
 import { BrandManifesto } from "@/components/aura/BrandManifesto";
 import { StorePickup } from "@/components/aura/StorePickup";
 import { AuraFooter } from "@/components/aura/AuraFooter";
 import { CartBar } from "@/components/catalog/CartBar";
 import { CartSheet } from "@/components/catalog/CartSheet";
 import { CatalogExperience } from "@/components/catalog/CatalogExperience";
+import MetroHero from "@/components/ui/scroll-locked-video-hero";
 import { CartProvider, useCart } from "@/lib/cart";
 import { useState } from "react";
 import { Toaster } from "sonner";
@@ -46,7 +46,12 @@ function Storefront() {
     <div className="min-h-screen bg-background">
       <AuraHeader cartCount={count} onCartOpen={() => setCartOpen(true)} />
       <main>
-        <AuraHero />
+        <MetroHero
+          id="inicio"
+          scrollHint="DESLIZE"
+          tagline="O detalhe muda tudo."
+          signature={false}
+        />
         <CatalogExperience onCartOpen={() => setCartOpen(true)} />
         <BrandManifesto />
         <StorePickup />
