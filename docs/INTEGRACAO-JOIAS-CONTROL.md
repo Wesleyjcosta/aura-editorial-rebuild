@@ -4,6 +4,14 @@ O Joias Control continua sendo a fonte oficial. O site não acessa o SQLite pela
 
 ## Publicar o catálogo
 
+No Windows, abra `Atualizar vitrine AURA.cmd` na raiz do projeto com dois cliques.
+O atalho verifica a branch `redesign/aura-master-v1`, pede para fechar o Joias Control
+e mostra o total de produtos, fotos e categorias ausentes depois da exportação.
+Ele atualiza somente os arquivos locais: confira as alterações no GitHub Desktop,
+faça commit e Push origin, valide a prévia e promova a versão na Vercel.
+Para conferir a configuração sem exportar, execute
+`node --experimental-sqlite tools/joias-control-publicador/atualizar-vitrine.mjs --check`.
+
 Com o Joias Control fechado, execute na pasta deste site:
 
 ```powershell
