@@ -2,7 +2,7 @@ import luminar from "@/assets/luminar.jpg";
 import colar from "@/assets/p-colar.jpg";
 import brinco from "@/assets/p-brinco.jpg";
 import anel from "@/assets/p-anel.jpg";
-import { ArrowLink, Reveal } from "./primitives";
+import { ArrowLink, GoldStar, Reveal } from "./primitives";
 import { ProductCard, type Product } from "./ProductCard";
 
 const PRODUCTS: Product[] = [
@@ -13,38 +13,59 @@ const PRODUCTS: Product[] = [
 
 export function FeaturedCollection() {
   return (
-    <section id="colecao" className="py-20 lg:py-24">
+    <section id="colecao" className="bg-soft py-20 md:py-24 lg:py-32">
       <div className="aura-container">
-        <div className="grid gap-6 lg:grid-cols-[2fr_1fr_1fr_1fr] lg:gap-5">
-          <Reveal className="relative min-h-[380px] overflow-hidden lg:min-h-[430px]">
+        <Reveal className="mb-8 flex items-center justify-between gap-6 border-b border-line pb-5">
+          <p className="text-[9px] font-medium uppercase text-gold-dark">01 · Em destaque</p>
+          <p className="hidden text-[10px] uppercase text-ink-muted sm:block">
+            Design autoral · Edição permanente
+          </p>
+        </Reveal>
+
+        <div className="grid lg:grid-cols-[1.35fr_0.65fr]">
+          <Reveal className="min-h-[420px] overflow-hidden lg:min-h-[620px]">
             <img
               src={luminar}
               alt="Coleção Luminar"
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="h-full min-h-[420px] w-full object-cover lg:min-h-[620px]"
             />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-[linear-gradient(to_top,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.72)_34%,rgba(255,255,255,0)_62%)]"
-            />
-            <div className="relative flex h-full flex-col justify-end p-8 lg:p-10">
+          </Reveal>
 
-              <p className="label-xs text-ink-soft">Coleção</p>
-              <p className="display mt-2 text-[clamp(30px,3vw,44px)] tracking-[0.02em] text-ink">
-                LUMINAR
+          <Reveal
+            delay={90}
+            className="flex min-h-[420px] flex-col justify-between bg-coal p-8 text-white md:p-12 lg:min-h-[620px] lg:p-14"
+          >
+            <div className="flex items-center justify-between">
+              <GoldStar className="h-3 w-3" />
+              <span className="text-[9px] uppercase text-white/50">AURA / 01</span>
+            </div>
+
+            <div>
+              <p className="text-[9px] font-medium uppercase text-gold">Coleção</p>
+              <h2 className="display mt-4 text-[52px] leading-[0.88] text-white md:text-[68px]">
+                Lumi
+                <br />
+                <em className="italic">nar</em>
+              </h2>
+              <p className="mt-7 max-w-[280px] text-[13px] leading-[1.7] text-white/65">
+                Formas orgânicas e superfícies luminosas para acompanhar seus melhores momentos.
               </p>
-              <p className="mt-4 max-w-[240px] text-[14px] text-ink-soft">
-                Luz que acompanha seus melhores momentos.
-              </p>
-              <ArrowLink href="#" className="mt-7 self-start" underline>
+              <ArrowLink
+                href="#curadoria"
+                className="mt-9 self-start border-white/35 text-white hover:text-gold"
+                underline
+              >
                 Conhecer coleção
               </ArrowLink>
             </div>
           </Reveal>
+        </div>
 
-          {PRODUCTS.map((p, i) => (
-            <Reveal key={p.name} delay={80 + i * 80}>
-              <ProductCard product={p} />
+        <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-6 lg:ml-[33%] lg:gap-8">
+          {PRODUCTS.map((product, index) => (
+            <Reveal key={product.name} delay={index * 70}>
+              <ProductCard product={product} />
             </Reveal>
           ))}
         </div>

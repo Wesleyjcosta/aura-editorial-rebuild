@@ -3,19 +3,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AuraHeader } from "@/components/aura/AuraHeader";
 import { AuraHero } from "@/components/aura/AuraHero";
 import { BrandManifesto } from "@/components/aura/BrandManifesto";
-import { AuraDetails } from "@/components/aura/AuraDetails";
-import { FeaturedCollection } from "@/components/aura/FeaturedCollection";
-import { ProductShelf } from "@/components/aura/ProductShelf";
-import { LookAura } from "@/components/aura/LookAura";
-import { CategoryDiscovery } from "@/components/aura/CategoryDiscovery";
 import { StorePickup } from "@/components/aura/StorePickup";
-import { BrandStory } from "@/components/aura/BrandStory";
-import { InstagramGallery } from "@/components/aura/InstagramGallery";
 import { AuraFooter } from "@/components/aura/AuraFooter";
+import { CartBar } from "@/components/catalog/CartBar";
+import { CartSheet } from "@/components/catalog/CartSheet";
+import { CatalogExperience } from "@/components/catalog/CatalogExperience";
+import { CartProvider, useCart } from "@/lib/cart";
+import { useState } from "react";
+import { Toaster } from "sonner";
 
 const title = "AURA Acessórios — Joias e acessórios autorais";
 const description =
-  "Peças autorais em dourado que iluminam sua presença. Coleção Luminar, curadoria AURA e retirada na loja em Viçosa/MG.";
+  "Conheça os produtos disponíveis na AURA Acessórios e reserve suas peças para retirada na loja em Viçosa/MG.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,22 +32,30 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
+    <CartProvider>
+      <Storefront />
+    </CartProvider>
+  );
+}
+
+function Storefront() {
+  const [cartOpen, setCartOpen] = useState(false);
+  const { count } = useCart();
+
+  return (
     <div className="min-h-screen bg-background">
-      <AuraHeader />
+      <AuraHeader cartCount={count} onCartOpen={() => setCartOpen(true)} />
       <main>
         <AuraHero />
+        <CatalogExperience onCartOpen={() => setCartOpen(true)} />
         <BrandManifesto />
-        <AuraDetails />
-        <FeaturedCollection />
-        <ProductShelf />
-        <LookAura />
-        <CategoryDiscovery />
         <StorePickup />
-        <BrandStory>
-          <InstagramGallery />
-        </BrandStory>
       </main>
       <AuraFooter />
+      {count ? <div className="h-14 bg-coal sm:h-16" aria-hidden="true" /> : null}
+      <CartBar onOpen={() => setCartOpen(true)} />
+      <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
+      <Toaster position="top-center" closeButton />
     </div>
   );
 }

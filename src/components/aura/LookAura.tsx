@@ -12,40 +12,52 @@ const PIECES = [
 
 export function LookAura() {
   return (
-    <section className="pb-20 lg:pb-24">
+    <section className="bg-background py-20 md:py-24 lg:py-32">
       <div className="aura-container">
-        <div className="grid gap-8 lg:grid-cols-[31fr_69fr] lg:gap-0">
-          <Reveal className="flex flex-col justify-center lg:pr-12">
-            <h2 className="display text-[clamp(30px,3.2vw,46px)] leading-[0.95] text-ink">
-              LOOK
-              <br />
-              AURA
-            </h2>
-            <p className="mt-6 max-w-[260px] text-[14px] text-ink-soft">
-              Combine peças, crie histórias e revele a sua melhor versão.
-            </p>
-            <ArrowLink href="#" className="mt-8 self-start" underline>
-              Ver look completo
-            </ArrowLink>
+        <div className="grid lg:grid-cols-[1.35fr_0.65fr]">
+          <Reveal className="overflow-hidden">
+            <img
+              src={look}
+              alt="Look AURA com brincos e anéis dourados"
+              loading="lazy"
+              className="aspect-[4/5] w-full object-cover sm:aspect-[16/11] lg:h-full lg:min-h-[620px] lg:aspect-auto"
+            />
           </Reveal>
 
-          <Reveal delay={90} className="grid gap-4 sm:grid-cols-[1fr_auto] sm:gap-5">
-            <div className="overflow-hidden">
-              <img
-                src={look}
-                alt="Look AURA"
-                loading="lazy"
-                className="aspect-[16/11] w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.025]"
-              />
+          <Reveal
+            delay={90}
+            className="flex flex-col justify-between border border-t-0 border-line p-7 md:p-10 lg:min-h-[620px] lg:border-t lg:border-l-0 lg:p-12"
+          >
+            <div className="flex items-center justify-between text-[9px] font-medium uppercase text-ink-muted">
+              <span>Look AURA</span>
+              <span>04 / Editorial</span>
             </div>
-            <div className="sm:w-[104px]">
-              <p className="label-xs text-ink-muted">Peças do look</p>
-              <ul className="mt-4 flex gap-3 sm:flex-col">
-                {PIECES.map((p) => (
-                  <li key={p.name} className="flex-1 border border-line-light bg-product">
+
+            <div className="py-14 lg:py-10">
+              <h2 className="display text-[46px] leading-[0.98] text-ink md:text-[60px]">
+                Um look,
+                <br />
+                muitas formas
+                <br />
+                de <em className="italic text-gold-dark">ser.</em>
+              </h2>
+              <p className="mt-7 max-w-[300px] text-[13px] leading-[1.7] text-ink-soft">
+                Misture volumes, texturas e pontos de luz. A melhor composição é aquela que parece
+                naturalmente sua.
+              </p>
+              <ArrowLink href="#curadoria" className="mt-9" underline>
+                Ver look completo
+              </ArrowLink>
+            </div>
+
+            <div>
+              <p className="text-[9px] font-medium uppercase text-ink-muted">Peças do look</p>
+              <ul className="mt-4 grid grid-cols-3 gap-3">
+                {PIECES.map((piece) => (
+                  <li key={piece.name} className="bg-product">
                     <img
-                      src={p.img}
-                      alt={p.name}
+                      src={piece.img}
+                      alt={piece.name}
                       loading="lazy"
                       className="aspect-square w-full object-cover"
                     />

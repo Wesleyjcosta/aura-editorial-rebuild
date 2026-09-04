@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
 
 export function GoldStar({ className = "" }: { className?: string }) {
   return (
@@ -72,17 +73,16 @@ export function ArrowLink({
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-3 label-xs text-ink transition-colors hover:text-gold-dark ${
+      className={`group inline-flex items-center gap-4 text-[11px] font-medium uppercase text-ink transition-colors hover:text-gold-dark ${
         underline ? "border-b border-line pb-2" : ""
       } ${className}`}
     >
       <span>{children}</span>
-      <span
+      <ArrowRight
         aria-hidden="true"
-        className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[5px]"
-      >
-        →
-      </span>
+        className="h-4 w-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1"
+        strokeWidth={1.25}
+      />
     </a>
   );
 }
@@ -99,11 +99,9 @@ export function SectionHeader({
   className?: string;
 }) {
   return (
-    <div
-      className={`flex items-center gap-4 border-b border-line-light pb-4 sm:gap-8 ${className}`}
-    >
-      <h2 className="label-xs shrink-0 text-ink">{title}</h2>
-      <span aria-hidden="true" className="hidden h-px min-w-0 flex-1 bg-line-light sm:block" />
+    <div className={`flex items-end gap-6 border-b border-line pb-5 ${className}`}>
+      <h2 className="display text-[30px] leading-none text-ink md:text-[42px]">{title}</h2>
+      <span aria-hidden="true" className="mb-1.5 hidden h-px min-w-0 flex-1 bg-line sm:block" />
       {action ? (
         <div className="ml-auto shrink-0 sm:ml-0">
           <ArrowLink href={actionHref} className="text-ink-muted">
@@ -122,7 +120,5 @@ export function EditorialHeading({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <h2 className={`display text-[clamp(30px,3.2vw,48px)] text-ink ${className}`}>{children}</h2>
-  );
+  return <h2 className={`display text-[36px] text-ink md:text-[52px] ${className}`}>{children}</h2>;
 }

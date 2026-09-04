@@ -14,10 +14,17 @@ const PRODUCTS: Product[] = [
 
 export function ProductShelf() {
   return (
-    <section className="pb-20 lg:pb-24">
+    <section id="curadoria" className="bg-sage py-20 md:py-24 lg:py-28">
       <div className="aura-container">
-        <SectionHeader title="Curadoria AURA" action="Ver tudo" />
-        <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4 lg:gap-5">
+        <div className="mb-4 text-[9px] font-medium uppercase text-gold-dark">
+          02 · Escolhas da casa
+        </div>
+        <SectionHeader
+          title="Curadoria essencial"
+          action="Ver todas as peças"
+          actionHref="#categorias"
+        />
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 md:mt-12 lg:grid-cols-4 lg:gap-7">
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.name} delay={i * 70}>
               <ProductCard product={p} withActions />

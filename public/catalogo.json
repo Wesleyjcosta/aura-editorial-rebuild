@@ -1,0 +1,54 @@
+{
+  "versao": 1,
+  "sistema": "JOIAS CONTROL",
+  "gerado_em": "2026-09-04T13:38:11.853Z",
+  "politica_indisponivel": "MOSTRAR_ESGOTADO",
+  "totais": {
+    "produtos_publicados": 2,
+    "produtos_indisponiveis": 0,
+    "imagens_verificadas": 2,
+    "adicionados": 2,
+    "atualizados": 0,
+    "removidos": 1
+  },
+  "produtos": [
+    {
+      "id": "31ba556e-476e-4e93-83ad-f57972112253",
+      "codigo": "JC00082",
+      "referencia": "",
+      "nome": "BOLSA FESTA P",
+      "descricao": "",
+      "categoria": "Bolsas",
+      "material": "",
+      "cor": "",
+      "variacao": "",
+      "preco": 29.9,
+      "preco_promocional": null,
+      "estoque": 3,
+      "disponivel": true,
+      "destaque": false,
+      "imagem": "/catalogo-imagens/31ba556e-476e-4e93-83ad-f57972112253-1784926574371.jpg",
+      "foto_url_original": "http://localhost:3333/uploads/31ba556e-476e-4e93-83ad-f57972112253-1784926574371.jpg",
+      "atualizado_em": "2026-09-04 13:27:30"
+    },
+    {
+      "id": "82a9b589-1341-4010-8c71-9db29c2588b3",
+      "codigo": "JC00318",
+      "referencia": "CAFÉ",
+      "nome": "BOLSA PAVÃO DE OURO",
+      "descricao": "",
+      "categoria": "Bolsas",
+      "material": "",
+      "cor": "",
+      "variacao": "",
+      "preco": 195,
+      "preco_promocional": null,
+      "estoque": 1,
+      "disponivel": true,
+      "destaque": false,
+      "imagem": "/catalogo-imagens/82a9b589-1341-4010-8c71-9db29c2588b3-1785329243283.jpg",
+      "foto_url_original": "http://localhost:3333/uploads/82a9b589-1341-4010-8c71-9db29c2588b3-1785329243283.jpg",
+      "atualizado_em": "2026-09-04 12:52:27"
+    }
+  ]
+}
