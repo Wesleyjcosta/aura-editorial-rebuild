@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type Produto = {
   id_publico: string;
   codigo: string | null;
@@ -16,6 +18,41 @@ export type Produto = {
   atualizado_em: string | null;
 };
 
+const produtoSchema = z.object({
+  id_publico: z.string().min(1),
+  codigo: z.string().nullable().default(null),
+  referencia: z.string().nullable().default(null),
+  nome: z.string().min(1),
+  categoria: z.string().nullable().default(null),
+  material: z.string().nullable().default(null),
+  descricao: z.string().nullable().default(null),
+  preco: z.number().finite().nonnegative().nullable().default(null),
+  preco_promocional: z.number().finite().nonnegative().nullable().default(null),
+  estoque: z.number().finite().nullable().default(null),
+  disponivel: z.boolean().nullable().default(null),
+  destaque: z.boolean().nullable().default(null),
+  imagem_url: z.string().nullable().default(null),
+  imagem_thumb_url: z.string().nullable().default(null),
+  atualizado_em: z.string().nullable().default(null),
+});
+
+const produtoJoiasSchema = produtoSchema.omit({ id_publico: true }).extend({
+  id: z.string().min(1),
+  imagem: z.string().nullable().default(null),
+});
+
+export function normalizarCatalogo(value: unknown): Produto[] {
+  // O publicador antigo envia uma lista; o Joias Control envia um snapshot.
+  if (Array.isArray(value)) return z.array(produtoSchema).parse(value);
+  const snapshot = z.object({ produtos: z.array(produtoJoiasSchema) }).parse(value);
+  return snapshot.produtos.map(({ id, imagem, ...produto }) => ({
+    ...produto,
+    id_publico: id,
+    imagem_url: imagem || produto.imagem_url,
+    imagem_thumb_url: produto.imagem_thumb_url || imagem || produto.imagem_url,
+  }));
+}
+
 export async function fetchCatalogo(): Promise<Produto[]> {
   const res = await fetch("/catalogo.json", {
     headers: {
@@ -23,7 +60,7 @@ export async function fetchCatalogo(): Promise<Produto[]> {
     },
   });
   if (!res.ok) throw new Error("Não foi possível carregar o catálogo.");
-  return (await res.json()) as Produto[];
+  return normalizarCatalogo(await res.json());
 }
 export const catalogoQuery = {
   queryKey: ["catalogo_publico"],
